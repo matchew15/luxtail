@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+  <script>Pi.init({ version: "2.0" })</script>
+  <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+<script>Pi.init({ version: "2.0", sandbox: true })</script>
+
+<script>
+  const piInitButton = document.getElementById('pi-init-button');
+  piInitButton.addEventListener('click', () => {
+    Pi.init({
+      version: "2.0",
+      sandbox: <%= process.env.NODE_ENV !== 'production' %>
+    });
+  });
+</script>
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lux Tail - PI SideMarket</title>
+  <script>
+    // Hacking react-scripts method for defining environment variables because we want to be able to
+    // pass them at runtime when the container starts, instead of having to build the frontend once for
+    // each environment (e.g staging / production).
+    //
+    // This will be automatically templated:
+    // - in DEV, by react-scripts (see https://create-react-app.dev/docs/adding-custom-environment-variables/)
+    // - in PROD, by the container's entrypoint script found in docker/entrypoint.sh (this enables passing the
+    //   variables at runtime instead of consuming it at build time and building a non-portable container)
+    window.__ENV = {
+      backendURL: "%REACT_APP_BACKEND_URL%",
+      sandbox: "%REACT_APP_SANDBOX_SDK%",
+    }
+  </script>
 
+  <!-- Import the Pi Network App Platform SDK: -->
+  <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+  
+  <!-- TODO make sandbox conditional to env (dev / prod) -->
+  <script>
+    // Make the decision whether Pi SDK should run in "Sandbox" mode or "Pi Browser" mode based on the
+    // dedicated environment variable:
+    var runSDKInSandboxMode = window.__ENV.sandbox === "true"; // treat env vars as strings, not booleans
+    
+    // Init Pi SDK:
+    Pi.init({ version: "2.0", sandbox: runSDKInSandboxMode });
+  </script>
   <!--
     - favicon
   -->
