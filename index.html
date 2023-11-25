@@ -75,8 +75,32 @@
     </div>
 
   </div>
-
-
+  
+    <script>
+      const loginButton = document.getElementById('pi-login');
+      loginButton.addEventListener('click', async () => {
+        // Start the PI authentication flow
+        const authResponse = await Pi.auth.login();
+        if (authResponse.success) {
+          // Handle successful authentication
+          const accessToken = authResponse.data.accessToken;
+          console.log('Authentication successful:', accessToken);
+        } else {
+          // Handle authentication error
+          console.error('PI authentication failed:', authResponse.error);
+        }
+      });
+    </script>
+  </body>
+  </html>
+  
+  <header>
+    <script src="./path/to/pi-sdk.js"></script>
+    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+    <script>Pi.init({ version: "2.0" })</script>
+    <button>Connect to PI</button>
+  </header>
+  
 
 
 
