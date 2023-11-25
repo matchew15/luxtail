@@ -1,20 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-  <script src="https://sdk.minepi.com/pi-sdk.js"></script>
-  <script>Pi.init({ version: "2.0" })</script>
-  <script src="https://sdk.minepi.com/pi-sdk.js"></script>
-<script>Pi.init({ version: "2.0", sandbox: true })</script>
-
-<script>
-  const piInitButton = document.getElementById('pi-init-button');
-  piInitButton.addEventListener('click', () => {
-    Pi.init({
-      version: "2.0",
-      sandbox: <%= process.env.NODE_ENV !== 'production' %>
-    });
-  });
-</script>
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -220,15 +204,15 @@
 
         <div class="header-alert-news">
           <p>
-            <b>Free Shipping</b>
-            This Week Order Over - $55
+            <b>Shop With "TEST PI"</b>
+            Use PI Coin When Mainnet Is Live
           </p>
         </div>
 
         <div class="header-top-actions">
 
           <select name="currency">
-            
+          
             <option value="PI">PI &Pi;</option>
             <option value="usd">USD &dollar;</option>
             <option value="eur">EUR &euro;</option>
@@ -254,7 +238,7 @@
       <div class="container">
 
         <a href="#" class="header-logo">
-          <img src="./assets/images/logo/logo.svg" alt="Anon's logo" width="120" height="36">
+          <img src="./assets/images/logo/logo.svg" alt="Lux Tail" width="120" height="36">
         </a>
 
         <div class="header-search-container">
@@ -855,7 +839,7 @@
 
             <div class="banner-content">
 
-              <p class="banner-subtitle">Trending item</p>
+              <p class="banner-subtitle">Trending item Bought with PI</p>
 
               <h2 class="banner-title">Women's latest fashion sale</h2>
 
@@ -2283,7 +2267,8 @@
 
                     <div class="price-box">
                       <p class="price">$150.00</p>
-
+                      <p class="price"><option value="PI">PI &Pi;</option>PI .0300</p>
+              
                       <del>$200.00</del>
                     </div>
 
